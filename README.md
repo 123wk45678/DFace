@@ -79,7 +79,7 @@ python dface/train_net/train_r_net.py
 python dface/prepare_data/gen_Onet_train_data.py --prefix_path WIDER_train/images/ --dface_traindata_store data/ --anno_file anno_store/wider_origin_anno.txt --pmodel_file model_store/pnet_epoch_10.pt --rmodel_file model_store/rnet_epoch_10.pt
 ```
 * Generate ONet Train landmarks data
-  To generate testImageList.txt, you need to cpoy merge_file.py to celeba/CelebA/Anno/ floder
+ <br/>To generate testImageList.txt, you need to cpoy merge_file.py to celeba/CelebA/Anno/ floder
 ```shell
 python dface/prepare_data/gen_landmark_48.py --dface_traindata_store data/ --anno_file celeba/CelebA/Anno/testImageList.txt --prefix_path celeba/CelebA/Img/img_celeba.7z/img_celeba
 ```
