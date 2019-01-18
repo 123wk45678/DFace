@@ -387,7 +387,12 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         # cropped_ims_tensors = np.zeros((num_boxes, 3, 24, 24), dtype=np.float32)
         cropped_ims_tensors = []
         for i in range(num_boxes):
+	    if tmph[i] <= 0 or tmpw[i] <= 0:            
+	        continue
             tmp = np.zeros((tmph[i], tmpw[i], 3), dtype=np.uint8)
+            if ((dy[i]-edy[i]) != (y[i]-ey[i])) or ((dx[i]-edx[i]) != (x[i]-ex[i])) or (dy[i]-edy[i]) > 0 or (dx[i]-edx[i]) > 0:
+                continue
+
             tmp[dy[i]:edy[i]+1, dx[i]:edx[i]+1, :] = im[y[i]:ey[i]+1, x[i]:ex[i]+1, :]
             crop_im = cv2.resize(tmp, (24, 24))
             crop_im_tensor = image_tools.convert_image_to_tensor(crop_im)

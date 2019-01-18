@@ -41,15 +41,15 @@ def gen_data(anno_file, data_dir, prefix):
     # image_path bbox landmark(5*2)
     for annotation in annotations:
         # print imgPath
-
-        annotation = annotation.strip().split(' ')
-
+	# print annotation
+        annotation = ' '.join(annotation.split())
+        annotation = annotation.split(' ')
         assert len(annotation)==15,"each line should have 15 element"
 
         im_path = os.path.join(prefix,annotation[0].replace("\\", "/"))
 
         gt_box = map(float, annotation[1:5])
-        # gt_box = [gt_box[0], gt_box[2], gt_box[1], gt_box[3]]
+        gt_box = [gt_box[0], gt_box[1], gt_box[0] + gt_box[2], gt_box[1] + gt_box[3]]
 
 
         gt_box = np.array(gt_box, dtype=np.int32)
