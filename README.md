@@ -26,7 +26,7 @@ First setting a pytorch and cv2. We suggest Anaconda to make a virtual and indep
 * cv2  
 
 ```shell
-git clone https://github.com/kuaikuaikim/DFace.git
+git clone https://github.com/inisis/DFace.git
 ```
 
 Add DFace to your local python path  
