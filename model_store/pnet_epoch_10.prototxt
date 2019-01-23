@@ -1,0 +1,133 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "data"
+  input_param {
+    shape {
+      dim: 1
+      dim: 3
+      dim: 24
+      dim: 24
+    }
+  }
+}
+layer {
+  name: "ConvNd_1"
+  type: "Convolution"
+  bottom: "data"
+  top: "ConvNd_1"
+  convolution_param {
+    num_output: 10
+    bias_term: true
+    pad: 0
+    kernel_size: 3
+    group: 1
+    stride: 1
+    dilation: 1
+  }
+}
+layer {
+  name: "PReLU_1"
+  type: "PReLU"
+  bottom: "ConvNd_1"
+  top: "PReLU_1"
+  prelu_param {
+    channel_shared: true
+  }
+}
+layer {
+  name: "MaxPool2D_1"
+  type: "Pooling"
+  bottom: "PReLU_1"
+  top: "MaxPool2D_1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+    pad: 0
+  }
+}
+layer {
+  name: "ConvNd_2"
+  type: "Convolution"
+  bottom: "MaxPool2D_1"
+  top: "ConvNd_2"
+  convolution_param {
+    num_output: 16
+    bias_term: true
+    pad: 0
+    kernel_size: 3
+    group: 1
+    stride: 1
+    dilation: 1
+  }
+}
+layer {
+  name: "PReLU_2"
+  type: "PReLU"
+  bottom: "ConvNd_2"
+  top: "PReLU_2"
+  prelu_param {
+    channel_shared: true
+  }
+}
+layer {
+  name: "ConvNd_3"
+  type: "Convolution"
+  bottom: "PReLU_2"
+  top: "ConvNd_3"
+  convolution_param {
+    num_output: 32
+    bias_term: true
+    pad: 0
+    kernel_size: 3
+    group: 1
+    stride: 1
+    dilation: 1
+  }
+}
+layer {
+  name: "PReLU_3"
+  type: "PReLU"
+  bottom: "ConvNd_3"
+  top: "PReLU_3"
+  prelu_param {
+    channel_shared: true
+  }
+}
+layer {
+  name: "ConvNd_4"
+  type: "Convolution"
+  bottom: "PReLU_3"
+  top: "ConvNd_4"
+  convolution_param {
+    num_output: 1
+    bias_term: true
+    pad: 0
+    kernel_size: 1
+    group: 1
+    stride: 1
+    dilation: 1
+  }
+}
+layer {
+  name: "Sigmoid0_1"
+  type: "Sigmoid"
+  bottom: "ConvNd_4"
+  top: "Sigmoid0_1"
+}
+layer {
+  name: "ConvNd_5"
+  type: "Convolution"
+  bottom: "PReLU_3"
+  top: "ConvNd_5"
+  convolution_param {
+    num_output: 4
+    bias_term: true
+    pad: 0
+    kernel_size: 1
+    group: 1
+    stride: 1
+    dilation: 1
+  }
+}
