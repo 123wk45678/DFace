@@ -61,10 +61,6 @@ class LossFn:
         valid_pred_landmark = pred_landmark[chose_index, :]
         return self.loss_landmark(valid_pred_landmark,valid_gt_landmark)*self.land_factor
 
-
-
-
-
 class PNet(nn.Module):
     ''' PNet '''
 
@@ -77,7 +73,7 @@ class PNet(nn.Module):
         self.pre_layer = nn.Sequential(
             nn.Conv2d(3, 10, kernel_size=3, stride=1),  # conv1
             nn.PReLU(),  # PReLU1
-            nn.MaxPool2d(kernel_size=2, stride=2),  # pool1
+            nn.MaxPool2d(kernel_size=2, stride=2, ceil_mode=True),  # pool1
             nn.Conv2d(10, 16, kernel_size=3, stride=1),  # conv2
             nn.PReLU(),  # PReLU2
             nn.Conv2d(16, 32, kernel_size=3, stride=1),  # conv3
@@ -106,10 +102,6 @@ class PNet(nn.Module):
         #landmark = self.conv4_3(x)
         return label, offset
 
-
-
-
-
 class RNet(nn.Module):
     ''' RNet '''
 
@@ -121,10 +113,10 @@ class RNet(nn.Module):
         self.pre_layer = nn.Sequential(
             nn.Conv2d(3, 28, kernel_size=3, stride=1),  # conv1
             nn.PReLU(),  # prelu1
-            nn.MaxPool2d(kernel_size=3, stride=2),  # pool1
+            nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),  # pool1
             nn.Conv2d(28, 48, kernel_size=3, stride=1),  # conv2
             nn.PReLU(),  # prelu2
-            nn.MaxPool2d(kernel_size=3, stride=2),  # pool2
+            nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),  # pool2
             nn.Conv2d(48, 64, kernel_size=2, stride=1),  # conv3
             nn.PReLU()  # prelu3
 
@@ -170,13 +162,13 @@ class ONet(nn.Module):
         self.pre_layer = nn.Sequential(
             nn.Conv2d(3, 32, kernel_size=3, stride=1),  # conv1
             nn.PReLU(),  # prelu1
-            nn.MaxPool2d(kernel_size=3, stride=2),  # pool1
+            nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),  # pool1
             nn.Conv2d(32, 64, kernel_size=3, stride=1),  # conv2
             nn.PReLU(),  # prelu2
-            nn.MaxPool2d(kernel_size=3, stride=2),  # pool2
+            nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),  # pool2
             nn.Conv2d(64, 64, kernel_size=3, stride=1),  # conv3
             nn.PReLU(), # prelu3
-            nn.MaxPool2d(kernel_size=2,stride=2), # pool3
+            nn.MaxPool2d(kernel_size=2,stride=2, ceil_mode=True), # pool3
             nn.Conv2d(64,128,kernel_size=2,stride=1), # conv4
             nn.PReLU() # prelu4
         )
