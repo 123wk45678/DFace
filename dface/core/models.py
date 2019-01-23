@@ -121,7 +121,7 @@ class RNet(nn.Module):
             nn.PReLU()  # prelu3
 
         )
-        self.conv4 = nn.Linear(64*2*2, 128)  # conv4
+        self.conv4 = nn.Linear(64*3*3, 128)  # conv4
         self.prelu4 = nn.PReLU()  # prelu4
         # detection
         self.conv5_1 = nn.Linear(128, 1)
@@ -172,7 +172,7 @@ class ONet(nn.Module):
             nn.Conv2d(64,128,kernel_size=2,stride=1), # conv4
             nn.PReLU() # prelu4
         )
-        self.conv5 = nn.Linear(128*2*2, 256)  # conv5
+        self.conv5 = nn.Linear(128*3*3, 256)  # conv5
         self.prelu5 = nn.PReLU()  # prelu5
         # detection
         self.conv6_1 = nn.Linear(256, 1)
