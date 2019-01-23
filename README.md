@@ -21,7 +21,7 @@ DFace has two major module, detection and recognition.In these two, We provide a
 First setting a pytorch and cv2. We suggest Anaconda to make a virtual and independent python envirment.**If you want to train on GPU,please install Nvidia cuda and cudnn.**
 
 ### Requirements
-* pytorch==0.3.1
+* pytorch==0.4.0
 * torchvision
 * cv2  
 
