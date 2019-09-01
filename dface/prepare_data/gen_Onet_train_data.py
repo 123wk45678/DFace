@@ -34,6 +34,15 @@ def gen_onet_data(data_dir, anno_file, pnet_model_file, rnet_model_file, prefix_
 
         p_boxes, p_boxes_align = mtcnn_detector.detect_pnet(im=im)
 
+	if p_boxes_align is None:
+	    all_boxes.append(np.array([]))
+	    batch_idx += 1
+	    continue
+	elif len(p_boxes_align) >= 21617:
+	    all_boxes.append(np.array([]))
+	    batch_idx += 1	    
+	
+
         boxes, boxes_align = mtcnn_detector.detect_rnet(im=im, dets=p_boxes_align)
 
         if boxes_align is None:
